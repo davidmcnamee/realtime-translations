@@ -1,21 +1,27 @@
-import * as React from "react"
-import * as ReactDOM from "react-dom"
+// OVERLAY means it goes _on top_ of the video call
+// POPUP means the little drop-down icon in the corner of your screen
+import * as React from "react";
+import * as ReactDOM from "react-dom";
+import styled, { createGlobalStyle } from "styled-components";
 
-import "../styles/popup.css"
-
-class Hello extends React.Component {
-    render() {
-        return (
-            <div className="popup-padded">
-                <h1>{ chrome.i18n.getMessage("l10nHello") }</h1>
-            </div>
-        )
+const GlobalStyles = createGlobalStyle`
+    * {
+        box-sizing: border-box;
+        background-color: blue;
     }
-}
+`
 
-// --------------
+const Main = () => {
+  return (
+      <>
+      <GlobalStyles/>
+      <Div>test</Div>;
+      </>
+  )
+};
 
-ReactDOM.render(
-    <Hello />,
-    document.getElementById('root')
-)
+const Div = styled.div`
+  background-color: red;
+`;
+
+ReactDOM.render(<Main />, document.getElementById("root"));;

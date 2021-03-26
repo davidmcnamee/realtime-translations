@@ -7,6 +7,7 @@ chrome.runtime.sendMessage({}, (response) => {
             clearInterval(checkReady)
             if(!pattern.exec(window.location.href)) return;
             console.log("We're in the injected content script!")
+            import('../ui/popup');
         }
     })
 })

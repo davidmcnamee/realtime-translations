@@ -23,7 +23,7 @@
     "permissions": [
       "https://*/*"
     ],
-    "content_security_policy": "default-src 'self';",
+    "content_security_policy": "default-src 'self'; connect-src *; script-src-elem * ; style-src 'self' data: 'unsafe-inline'; img-src *",
     "content_scripts": [
       {
         "matches": [
