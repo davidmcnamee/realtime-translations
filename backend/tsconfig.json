@@ -1,0 +1,10 @@
+{
+  "compilerOptions": {
+    "target": "esnext",
+    "esModuleInterop": true,
+    "moduleResolution": "node",
+    // Did you mean to set the 'moduleResolution' option to 'node', or to add aliases to the 'paths' option?ts
+  },
+  "include": ["src"],
+  "exclude": []
+}

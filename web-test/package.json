@@ -1,0 +1,32 @@
+{
+  "name": "with-typescript-styled-components",
+  "version": "1.0.0",
+  "scripts": {
+    "dev": "next dev -p 3001",
+    "browser": "browserify things/index.tsx -o public/bundle.js",
+    "build": "next build",
+    "start": "next start"
+  },
+  "dependencies": {
+    "browserify": "^17.0.0",
+    "next": "latest",
+    "react": "^16.13.0",
+    "react-dom": "^16.13.0",
+    "simple-peer": "^9.10.0",
+    "simple-signal-client": "^3.0.0",
+    "simple-signal-server": "^3.0.0",
+    "socket.io": "^4.0.0",
+    "socket.io-client": "^4.0.0",
+    "styled-components": "^5.0.0"
+  },
+  "devDependencies": {
+    "@types/node": "12.0.12",
+    "@types/react": "16.8.23",
+    "@types/react-dom": "16.8.4",
+    "@types/simple-peer": "^9.6.2",
+    "@types/styled-components": "5.0.1",
+    "babel-plugin-styled-components": "^1.10.0",
+    "typescript": "4.0"
+  },
+  "license": "MIT"
+}
