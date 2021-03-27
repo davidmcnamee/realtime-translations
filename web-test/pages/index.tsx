@@ -19,6 +19,12 @@ export default function Home() {
     (async function () {
       const [peer, socket] = await onLoad();
       setState({ peer, socket });
+      navigator.mediaDevices.getUserMedia({ audio: true, video: false }).then(mediaStream => {
+        const audioTracks = mediaStream.getAudioTracks();
+        const audioTrack = audioTracks[0];
+        peer.addTrack(audioTrack, mediaStream);
+        alert("sent audio track");
+      });
     })();
   }, []);
 
@@ -62,19 +68,3 @@ function registerPeer(peer: any, socket: Socket) {
   }
   console.log("set up all handlers");
 }
-
-// var signalClient = new SimpleSignalClient(socket); // Uses an existing socket.io-client instance
-// signalClient.on("discover", async (allIDs: string[]) => {
-//   const id = prompt(allIDs.join(", ")); // Have the user choose an ID to connect to
-//   const { peer } = await signalClient.connect(id); // connect to target client
-//   alert("hi2!");
-//   peer; // this is a fully-signaled simple-peer object (initiator side)
-// });
-
-// signalClient.on("request", async (request: any) => {
-//   const { peer } = await request.accept(); // Accept the incoming request
-//   alert("hi!");
-//   peer; // this is a fully-signaled simple-peer object (non-initiator side)
-// });
-
-// signalClient.discover();

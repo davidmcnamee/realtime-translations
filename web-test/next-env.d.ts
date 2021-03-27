@@ -5,3 +5,6 @@
 
 declare var SimpleSignalClient: any;
 declare var SimplePeer: any;
+declare var RecordRTC: any;
+declare var StereoAudioRecorder: any;
+declare var ss: any;
