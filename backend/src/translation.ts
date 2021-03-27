@@ -1,4 +1,6 @@
 import { SpeechTranslationServiceClient } from '@google-cloud/media-translation';
+// const speech = require('@google-cloud/speech').v1p1beta1
+import fs from 'fs';
 
 const config = {
   audioConfig: {
@@ -9,37 +11,48 @@ const config = {
   // singleUtterance: true,
   single_utterance: true,
 };
+// const config = {
+//   encoding: 'flac',
+//   sampleRateHertz: 16000,
+//   languageCode: 'en-US',
+// };
 
 let stopped = false;
 let count = 1;
-export function startTranslation() {
+export async function startTranslation() {
   const client = new SpeechTranslationServiceClient();
+  // const client = new speech.SpeechClient();
   const stream = client.streamingTranslateSpeech().on('error', onError).on('data', onTranslationData);
+  // const stream = client.streamingRecognize({ config, interimResults: true }).on('error', onError).on('data', onTranslationData);
   // First request needs to have only a streaming config, no data.
   const initialRequest = {
     streamingConfig: config,
+
     audioContent: null,
   };
   stream.write(initialRequest);
   setTimeout(() => {
     stream.end();
     stopped = true;
-  }, 10000);
+  }, 20000);
   // stream.pause();
+  await new Promise(resolve => setTimeout(resolve, 1000));
 
   // Send the remaining requests from audio track
-  function onStream(audioStream: any) {
+  function onStream(/*audioStream: any*/ filename: string) {
     if (stopped) return;
     let num = count;
     count += 1;
     console.log('resuming');
     // stream.resume();
-    audioStream.on('data', (chunk: Buffer) => {
+    fs.createReadStream(filename, { highWaterMark: 4096, encoding: 'base64' })
+    /*audioStream*/.on('data', (chunk: Buffer) => {
       if (stopped) return;
       const request = {
         streamingConfig: config,
-        audioContent: chunk.toString('base64'),
+        audioContent: chunk.toString(/*'base64'*/),
       };
+      // console.log(request)
       console.log('req for stream ', num);
       stream.write(request);
     }).on('close', () => {

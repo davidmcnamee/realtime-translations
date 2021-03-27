@@ -5,6 +5,7 @@
   "license": "MIT",
   "dependencies": {
     "@google-cloud/media-translation": "^2.2.3",
+    "@google-cloud/speech": "^4.4.0",
     "@types/node": "^14.14.36",
     "fluent-ffmpeg": "^2.1.2",
     "node-record-lpcm16": "^1.0.1",
